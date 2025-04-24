@@ -17,6 +17,7 @@ import view.Menu;
 import view.Read;
 import view.ReadAll;
 import view.Update;
+import utils.Constants;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -119,22 +120,22 @@ public class ControllerImplementation implements IController, ActionListener {
         String daoSelected = ((javax.swing.JCheckBox) (dSS.getAccept()[1])).getText();
         dSS.dispose();
         switch (daoSelected) {
-            case "ArrayList":
+            case Constants.STORAGE_ARRAY_LIST:
                 dao = new DAOArrayList();
                 break;
-            case "HashMap":
+            case Constants.STORAGE_HASH_MAP:
                 dao = new DAOHashMap();
                 break;
-            case "File":
+            case Constants.STORAGE_FILE:
                 setupFileStorage();
                 break;
-            case "File (Serialization)":
+            case Constants.STORAGE_FILE_SERIALIZATION:
                 setupFileSerialization();
                 break;
-            case "SQL - Database":
+            case Constants.STORAGE_SQL_DATABASE:
                 setupSQLDatabase();
                 break;
-            case "JPA - Database":
+            case Constants.STORAGE_JPA_DATABASE:
                 setupJPADatabase();
                 break;
         }
