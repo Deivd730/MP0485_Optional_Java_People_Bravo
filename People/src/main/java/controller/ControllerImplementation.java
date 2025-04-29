@@ -17,6 +17,7 @@ import view.Menu;
 import view.Read;
 import view.ReadAll;
 import view.Update;
+import utils.Constants;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -119,22 +120,22 @@ public class ControllerImplementation implements IController, ActionListener {
         String daoSelected = ((javax.swing.JCheckBox) (dSS.getAccept()[1])).getText();
         dSS.dispose();
         switch (daoSelected) {
-            case "ArrayList":
+            case Constants.STORAGE_ARRAY_LIST:
                 dao = new DAOArrayList();
                 break;
-            case "HashMap":
+            case Constants.STORAGE_HASH_MAP:
                 dao = new DAOHashMap();
                 break;
-            case "File":
+            case Constants.STORAGE_FILE:
                 setupFileStorage();
                 break;
-            case "File (Serialization)":
+            case Constants.STORAGE_FILE_SERIALIZATION:
                 setupFileSerialization();
                 break;
-            case "SQL - Database":
+            case Constants.STORAGE_SQL_DATABASE:
                 setupSQLDatabase();
                 break;
-            case "JPA - Database":
+            case Constants.STORAGE_JPA_DATABASE:
                 setupJPADatabase();
                 break;
         }
@@ -358,21 +359,21 @@ public class ControllerImplementation implements IController, ActionListener {
         Object[] options = {"Yes", "No"};
         //int answer = JOptionPane.showConfirmDialog(menu, "Are you sure to delete all people registered?", "Delete All - People v1.1.0", 0, 0);
         int answer = JOptionPane.showOptionDialog(
-        menu,
-        "Are you sure you want to delete all registered people?", 
-        "Delete All - People v1.1.0",
-        JOptionPane.YES_NO_OPTION,
-        JOptionPane.WARNING_MESSAGE,
-        null,
-        options,
-        options[1] // Default selection is "No"
-    );
+                menu,
+                "Are you sure you want to delete all registered people?",
+                "Delete All - People v1.1.0",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null,
+                options,
+                options[1] // Default selection is "No"
+        );
 
         if (answer == 0) {
             deleteAll();
         }
     }
-    
+
     /**
      * This function inserts the Person object with the requested NIF, if it
      * doesn't exist. If there is any access problem with the storage device,
