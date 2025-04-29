@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Font;
 import static utils.DataValidation.calculateNifLetter;
 import static utils.DataValidation.isLetter;
 import static utils.DataValidation.isNumber;
@@ -32,6 +33,48 @@ public class Insert extends javax.swing.JDialog {
         DropPhotoListener d = new DropPhotoListener(photo, this);
         DropTarget dropTarget = new DropTarget(photo, d);
         insert.setEnabled(false);
+        
+        
+        pack();
+        setLocationRelativeTo(null);
+
+        // Placeholder para el campo name
+        name.setText("Enter full name...");
+        name.setForeground(java.awt.Color.GRAY);
+
+        name.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent e) {
+                if (name.getText().equals("Enter full name...")) {
+                    name.setText("");
+                    name.setForeground(java.awt.Color.BLACK);
+                }
+            }
+
+            public void focusLost(java.awt.event.FocusEvent e) {
+                if (name.getText().isEmpty()) {
+                    name.setForeground(java.awt.Color.GRAY);
+                    name.setText("Enter full name...");
+                }
+            }
+        });
+                nif.setText("Enter your nif");
+                nif.setForeground(java.awt.Color.GRAY);
+
+                nif.addFocusListener(new java.awt.event.FocusAdapter() {
+                    public void focusGained(java.awt.event.FocusEvent e) {
+                        if (nif.getText().equals("Enter your nif")) {
+                            nif.setText("");
+                            nif.setForeground(java.awt.Color.BLACK);
+                        }
+                    }
+
+                    public void focusLost(java.awt.event.FocusEvent e) {
+                        if (nif.getText().isEmpty()) {
+                            nif.setForeground(java.awt.Color.GRAY);
+                            nif.setText("Enter your nif");
+                        }
+                    }
+                });
     }
 
     public JButton getReset() {
@@ -187,6 +230,11 @@ public class Insert extends javax.swing.JDialog {
         nif.setMaximumSize(new java.awt.Dimension(400, 22));
         nif.setMinimumSize(new java.awt.Dimension(400, 22));
         nif.setPreferredSize(new java.awt.Dimension(400, 22));
+        nif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nifActionPerformed(evt);
+            }
+        });
         nif.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 nifKeyPressed(evt);
@@ -314,6 +362,10 @@ public class Insert extends javax.swing.JDialog {
             showInsert();
         }
     }//GEN-LAST:event_nifKeyPressed
+
+    private void nifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nifActionPerformed
+        
+    }//GEN-LAST:event_nifActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdatepicker.JDatePicker dateOfBirth;
