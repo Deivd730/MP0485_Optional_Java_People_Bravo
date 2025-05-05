@@ -34,6 +34,13 @@ public class Insert extends javax.swing.JDialog {
         DropTarget dropTarget = new DropTarget(photo, d);
         insert.setEnabled(false);
         
+        // Cambiar el texto del botón del DatePicker
+        if (dateOfBirth.getComponent(1) instanceof JButton) {
+            JButton datePickerButton = (JButton) dateOfBirth.getComponent(1);
+            datePickerButton.setText("Seleccionar una fecha");
+            datePickerButton.setPreferredSize(new java.awt.Dimension(180, 22)); // Ajustar tamaño si es necesario
+        }
+
         
         pack();
         setLocationRelativeTo(null);
@@ -280,6 +287,7 @@ public class Insert extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(12, 24, 12, 24);
         getContentPane().add(jLabel2, gridBagConstraints);
 
+        dateOfBirth.setToolTipText("");
         dateOfBirth.setMaximumSize(new java.awt.Dimension(350, 22));
         dateOfBirth.setMinimumSize(new java.awt.Dimension(350, 22));
         dateOfBirth.setPreferredSize(new java.awt.Dimension(350, 22));
