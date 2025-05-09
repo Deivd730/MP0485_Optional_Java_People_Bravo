@@ -184,7 +184,7 @@ public class Delete extends javax.swing.JDialog {
 
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
     // salta que todas las personas se han eliminado correctamente
-    JOptionPane.showMessageDialog(this, "¡Todas las personas se han eliminado correctamente!", "Operación completada", JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane.showMessageDialog(this, "¡La persona se ha eliminado correctamente!", "Operación completada", JOptionPane.INFORMATION_MESSAGE);
 
     resetActionPerformed(null);
     }//GEN-LAST:event_deleteActionPerformed
