@@ -83,6 +83,11 @@ public class Delete extends javax.swing.JDialog {
         delete.setMaximumSize(new java.awt.Dimension(187, 33));
         delete.setMinimumSize(new java.awt.Dimension(187, 33));
         delete.setPreferredSize(new java.awt.Dimension(187, 33));
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -176,6 +181,13 @@ public class Delete extends javax.swing.JDialog {
         nif.setEditable(true);
         delete.setEnabled(false);
     }//GEN-LAST:event_resetActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+    // salta que todas las personas se han eliminado correctamente
+    JOptionPane.showMessageDialog(this, "¡Todas las personas se han eliminado correctamente!", "Operación completada", JOptionPane.INFORMATION_MESSAGE);
+
+    resetActionPerformed(null);
+    }//GEN-LAST:event_deleteActionPerformed
 
     /**
      * @param args the command line arguments
