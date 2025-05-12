@@ -326,6 +326,8 @@ public class ControllerImplementation implements IController, ActionListener {
             }
             update(p);
             update.getReset().doClick();
+            JOptionPane.showMessageDialog(update, " Person updated successfully!", update.getTitle(), JOptionPane.INFORMATION_MESSAGE);
+
         }
     }
 
