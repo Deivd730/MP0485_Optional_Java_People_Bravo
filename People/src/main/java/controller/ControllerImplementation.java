@@ -113,6 +113,9 @@ public class ControllerImplementation implements IController, ActionListener {
             handleReadAll();
         } else if (e.getSource() == menu.getDeleteAll()) {
             handleDeleteAll();
+        } else if (e.getSource() == menu.getCountAll()) {
+            handleCountAll();
+
         }
     }
 
@@ -218,6 +221,7 @@ public class ControllerImplementation implements IController, ActionListener {
         menu.getDelete().addActionListener(this);
         menu.getReadAll().addActionListener(this);
         menu.getDeleteAll().addActionListener(this);
+        menu.getCountAll().addActionListener(this);
     }
 
     private void handleInsertAction() {
@@ -374,6 +378,18 @@ public class ControllerImplementation implements IController, ActionListener {
         }
     }
 
+    public void handleCountAll() {
+        ArrayList<Person> s = readAll();
+        int count = s.size();
+        if (s.isEmpty()) {
+            JOptionPane.showMessageDialog(menu, "There are not people registered yet.", "Count All - People v1.1.0", JOptionPane.WARNING_MESSAGE);
+        } else {
+            countAll();
+            JOptionPane.showMessageDialog(menu, count, "Count All - People v1.1.0", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+    }
+
     /**
      * This function inserts the Person object with the requested NIF, if it
      * doesn't exist. If there is any access problem with the storage device,
@@ -526,6 +542,26 @@ public class ControllerImplementation implements IController, ActionListener {
                 System.exit(0);
             }
         }
+    }
+
+    @Override
+    public int countAll() {
+        int count = 0;
+
+        try {
+
+            count = dao.countAll();
+
+        } catch (Exception ex) {
+            if (ex instanceof FileNotFoundException || ex instanceof IOException
+                    || ex instanceof ParseException || ex instanceof ClassNotFoundException
+                    || ex instanceof SQLException || ex instanceof PersistenceException) {
+                JOptionPane.showMessageDialog(menu, ex.getMessage() + " Closing application.", "Count - People v1.1.0", JOptionPane.ERROR_MESSAGE);
+                System.exit(0);
+            }
+        }
+
+        return count;
     }
 
 }
