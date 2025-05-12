@@ -174,7 +174,10 @@ public class DAOFileSerializable implements IDAO {
 
     @Override
     public int countAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        ArrayList<Person> people = readAll();
+
+        return people.size();
     }
 
 }
