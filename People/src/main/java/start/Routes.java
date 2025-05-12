@@ -12,7 +12,7 @@ public enum Routes {
     APPIMAGES("images", null, null, null, null, null, null, null, null),
     FILE ("File", "Photos", "dataFile.txt", null, null, null, null, null, null),
     FILES ("FileSer", null, "dataFile.ser", null, null, null, null, null, null ),
-    DB("SQL_DataBase", "Photos", null, "jdbc:mysql://localhost:3306", "?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true", "root", "", "people", "person"),
+    DB("SQL_DataBase", "Photos", null, "jdbc:mysql://localhost:3306", "?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true", "root", "1234", "people", "person"),
     DBO("JPA_DataBase", null, null, "objectdb://localhost/people.odb;user=admin;password=admin", null, null, null, null, null);
 
     private final String folderPath;

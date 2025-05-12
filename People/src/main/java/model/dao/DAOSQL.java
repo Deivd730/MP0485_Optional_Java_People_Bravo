@@ -37,6 +37,7 @@ public class DAOSQL implements IDAO {
     private final String SQL_UPDATE = "UPDATE " + Routes.DB.getDbServerDB() + "." + Routes.DB.getDbServerTABLE() + " SET name = ?, dateOfBirth = ?, photo = ? WHERE (nif = ?);";
     private final String SQL_DELETE = "DELETE FROM " + Routes.DB.getDbServerDB() + "." + Routes.DB.getDbServerTABLE() + " WHERE (nif = ";
     private final String SQL_DELETE_ALL = "TRUNCATE " + Routes.DB.getDbServerDB() + "." + Routes.DB.getDbServerTABLE();
+    private final String SQL_COUNT_ALL = "SELECT COUNT(*) FROM " + Routes.DB.getDbServerDB() + "." + Routes.DB.getDbServerTABLE();
 
     public Connection connect() throws SQLException {
         Connection conn;
@@ -220,7 +221,34 @@ public class DAOSQL implements IDAO {
 
     @Override
     public int countAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<Person> people = new ArrayList<>();
+        int count = 0;
+
+        Connection conn;
+        Statement instruction;
+        ResultSet rs;
+        conn = connect();
+        instruction = conn.createStatement();
+        rs = instruction.executeQuery(SQL_SELECT_ALL);
+        while (rs.next()) {
+            String nif = rs.getString("nif");
+            String name = rs.getString("name");
+            Date date = rs.getDate("dateOfBirth");
+            String photo = rs.getString("photo");
+            if (photo != null) {
+                people.add(new Person(nif, name, date, new ImageIcon(photo)));
+            } else {
+                people.add(new Person(nif, name, date, null));
+            }
+        }
+
+        count = people.size();
+
+        rs.close();
+        instruction.close();
+        disconnect(conn);
+
+        return count;
     }
 
 }
