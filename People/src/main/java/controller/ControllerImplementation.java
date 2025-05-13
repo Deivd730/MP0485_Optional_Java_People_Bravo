@@ -279,7 +279,7 @@ public class ControllerImplementation implements IController, ActionListener {
             delete.getReset().doClick();
         }
     }
-
+  
     public void handleUpdateAction() {
         update = new Update(menu, true);
         update.getUpdate().addActionListener(this);
@@ -370,7 +370,12 @@ public class ControllerImplementation implements IController, ActionListener {
         );
 
         if (answer == 0) {
-            deleteAll();
+            try {
+                deleteAll();
+                    JOptionPane.showMessageDialog(insert, "Person deleted successfully!", "Delete - People v1.1.0", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(insert, "An error occurred while deleting the person.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
         }
     }
 
