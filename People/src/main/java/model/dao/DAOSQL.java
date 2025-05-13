@@ -92,11 +92,11 @@ public class DAOSQL implements IDAO {
             String name = rs.getString("name");
             Date date = rs.getDate("dateOfBirth");
             String photo = rs.getString("photo");
-            if (photo != null) {
-                people.add(new Person(nif, name, date, new ImageIcon(photo)));
-            } else {
-                people.add(new Person(nif, name, date, null));
-            }
+//            if (photo != null) {
+//                people.add(new Person(nif, name, date, new ImageIcon(photo)));
+//            } else {
+//                people.add(new Person(nif, name, date, null));
+//            }
         }
         rs.close();
         instruction.close();
@@ -235,11 +235,11 @@ public class DAOSQL implements IDAO {
             String name = rs.getString("name");
             Date date = rs.getDate("dateOfBirth");
             String photo = rs.getString("photo");
-            if (photo != null) {
-                people.add(new Person(nif, name, date, new ImageIcon(photo)));
-            } else {
-                people.add(new Person(nif, name, date, null));
-            }
+//            if (photo != null) {
+//                people.add(new Person(nif, name, date, new ImageIcon(photo)));
+//            } else {
+//                people.add(new Person(nif, name, date, null));
+//            }
         }
 
         count = people.size();
