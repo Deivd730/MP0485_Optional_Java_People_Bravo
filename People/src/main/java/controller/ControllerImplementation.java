@@ -274,9 +274,47 @@ public class ControllerImplementation implements IController, ActionListener {
 
     public void handleDeletePerson() {
         if (delete != null) {
-            Person p = new Person(delete.getNif().getText());
-            delete(p);
-            delete.getReset().doClick();
+            // Ask the user for confirmation
+            int respuesta = JOptionPane.showConfirmDialog(
+                    delete,
+                    "Are you sure you want to delete this person?",
+                    "Confirm Deletion",
+                    JOptionPane.YES_NO_OPTION
+            );
+            // Continue only if the user clicked "Yes"
+            if (respuesta == JOptionPane.YES_OPTION) {
+                Person p = new Person(delete.getNif().getText());
+                try {
+                    if (dao.read(p) != null) {
+                        dao.delete(p);
+
+                        // Show success message
+                        JOptionPane.showMessageDialog(
+                                delete,
+                                "Person deleted successfully!",
+                                "Success",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                        // Clear the form
+                        delete.getReset().doClick();
+                    } else {
+                        // If the person does not exist
+                        JOptionPane.showMessageDialog(
+                                delete,
+                                p.getNif() + " is not registered.",
+                                "Warning",
+                                JOptionPane.WARNING_MESSAGE
+                        );
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(
+                            delete,
+                            "Error deleting person: " + ex.getMessage(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                }
+            }
         }
     }
 
