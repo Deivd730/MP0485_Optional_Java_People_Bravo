@@ -17,6 +17,7 @@ import view.Menu;
 import view.Read;
 import view.ReadAll;
 import view.Update;
+import utils.Constants;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -112,6 +113,9 @@ public class ControllerImplementation implements IController, ActionListener {
             handleReadAll();
         } else if (e.getSource() == menu.getDeleteAll()) {
             handleDeleteAll();
+        } else if (e.getSource() == menu.getCountAll()) {
+            handleCountAll();
+
         }
     }
 
@@ -119,22 +123,22 @@ public class ControllerImplementation implements IController, ActionListener {
         String daoSelected = ((javax.swing.JCheckBox) (dSS.getAccept()[1])).getText();
         dSS.dispose();
         switch (daoSelected) {
-            case "ArrayList":
+            case Constants.STORAGE_ARRAY_LIST:
                 dao = new DAOArrayList();
                 break;
-            case "HashMap":
+            case Constants.STORAGE_HASH_MAP:
                 dao = new DAOHashMap();
                 break;
-            case "File":
+            case Constants.STORAGE_FILE:
                 setupFileStorage();
                 break;
-            case "File (Serialization)":
+            case Constants.STORAGE_FILE_SERIALIZATION:
                 setupFileSerialization();
                 break;
-            case "SQL - Database":
+            case Constants.STORAGE_SQL_DATABASE:
                 setupSQLDatabase();
                 break;
-            case "JPA - Database":
+            case Constants.STORAGE_JPA_DATABASE:
                 setupJPADatabase();
                 break;
         }
@@ -217,6 +221,7 @@ public class ControllerImplementation implements IController, ActionListener {
         menu.getDelete().addActionListener(this);
         menu.getReadAll().addActionListener(this);
         menu.getDeleteAll().addActionListener(this);
+        menu.getCountAll().addActionListener(this);
     }
 
     private void handleInsertAction() {
@@ -278,7 +283,7 @@ public class ControllerImplementation implements IController, ActionListener {
             delete.getReset().doClick();
         }
     }
-
+  
     public void handleUpdateAction() {
         update = new Update(menu, true);
         update.getUpdate().addActionListener(this);
@@ -325,6 +330,8 @@ public class ControllerImplementation implements IController, ActionListener {
             }
             update(p);
             update.getReset().doClick();
+            JOptionPane.showMessageDialog(update, " Person updated successfully!", update.getTitle(), JOptionPane.INFORMATION_MESSAGE);
+
         }
     }
 
@@ -358,21 +365,38 @@ public class ControllerImplementation implements IController, ActionListener {
         Object[] options = {"Yes", "No"};
         //int answer = JOptionPane.showConfirmDialog(menu, "Are you sure to delete all people registered?", "Delete All - People v1.1.0", 0, 0);
         int answer = JOptionPane.showOptionDialog(
-        menu,
-        "Are you sure you want to delete all registered people?", 
-        "Delete All - People v1.1.0",
-        JOptionPane.YES_NO_OPTION,
-        JOptionPane.WARNING_MESSAGE,
-        null,
-        options,
-        options[1] // Default selection is "No"
-    );
+                menu,
+                "Are you sure you want to delete all registered people?",
+                "Delete All - People v1.1.0",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE,
+                null,
+                options,
+                options[1] // Default selection is "No"
+        );
 
         if (answer == 0) {
-            deleteAll();
+            try {
+                deleteAll();
+                    JOptionPane.showMessageDialog(insert, "Person deleted successfully!", "Delete - People v1.1.0", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(insert, "An error occurred while deleting the person.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
         }
     }
-    
+
+    public void handleCountAll() {
+        ArrayList<Person> s = readAll();
+        int count = s.size();
+        if (s.isEmpty()) {
+            JOptionPane.showMessageDialog(menu, "There are not people registered yet.", "Count All - People v1.1.0", JOptionPane.WARNING_MESSAGE);
+        } else {
+            countAll();
+            JOptionPane.showMessageDialog(menu, count, "Count All - People v1.1.0", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+    }
+
     /**
      * This function inserts the Person object with the requested NIF, if it
      * doesn't exist. If there is any access problem with the storage device,
@@ -525,6 +549,26 @@ public class ControllerImplementation implements IController, ActionListener {
                 System.exit(0);
             }
         }
+    }
+
+    @Override
+    public int countAll() {
+        int count = 0;
+
+        try {
+
+            count = dao.countAll();
+
+        } catch (Exception ex) {
+            if (ex instanceof FileNotFoundException || ex instanceof IOException
+                    || ex instanceof ParseException || ex instanceof ClassNotFoundException
+                    || ex instanceof SQLException || ex instanceof PersistenceException) {
+                JOptionPane.showMessageDialog(menu, ex.getMessage() + " Closing application.", "Count - People v1.1.0", JOptionPane.ERROR_MESSAGE);
+                System.exit(0);
+            }
+        }
+
+        return count;
     }
 
 }

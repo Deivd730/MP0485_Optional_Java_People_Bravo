@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Font;
 import static utils.DataValidation.calculateNifLetter;
 import static utils.DataValidation.isLetter;
 import static utils.DataValidation.isNumber;
@@ -32,6 +33,55 @@ public class Insert extends javax.swing.JDialog {
         DropPhotoListener d = new DropPhotoListener(photo, this);
         DropTarget dropTarget = new DropTarget(photo, d);
         insert.setEnabled(false);
+        
+        // Cambiar el texto del botón del DatePicker
+        if (dateOfBirth.getComponent(1) instanceof JButton) {
+            JButton datePickerButton = (JButton) dateOfBirth.getComponent(1);
+            datePickerButton.setText("Seleccionar una fecha");
+            datePickerButton.setPreferredSize(new java.awt.Dimension(180, 22)); // Ajustar tamaño si es necesario
+        }
+
+        
+        pack();
+        setLocationRelativeTo(null);
+
+        // Placeholder para el campo name
+        name.setText("Enter full name...");
+        name.setForeground(java.awt.Color.GRAY);
+
+        name.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent e) {
+                if (name.getText().equals("Enter full name...")) {
+                    name.setText("");
+                    name.setForeground(java.awt.Color.BLACK);
+                }
+            }
+
+            public void focusLost(java.awt.event.FocusEvent e) {
+                if (name.getText().isEmpty()) {
+                    name.setForeground(java.awt.Color.GRAY);
+                    name.setText("Enter full name...");
+                }
+            }
+        });
+                nif.setText("Enter your nif");
+                nif.setForeground(java.awt.Color.GRAY);
+
+                nif.addFocusListener(new java.awt.event.FocusAdapter() {
+                    public void focusGained(java.awt.event.FocusEvent e) {
+                        if (nif.getText().equals("Enter your nif")) {
+                            nif.setText("");
+                            nif.setForeground(java.awt.Color.BLACK);
+                        }
+                    }
+
+                    public void focusLost(java.awt.event.FocusEvent e) {
+                        if (nif.getText().isEmpty()) {
+                            nif.setForeground(java.awt.Color.GRAY);
+                            nif.setText("Enter your nif");
+                        }
+                    }
+                });
     }
 
     public JButton getReset() {
@@ -89,6 +139,11 @@ public class Insert extends javax.swing.JDialog {
         insert.setMaximumSize(new java.awt.Dimension(187, 33));
         insert.setMinimumSize(new java.awt.Dimension(187, 33));
         insert.setPreferredSize(new java.awt.Dimension(187, 33));
+        insert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -152,7 +207,7 @@ public class Insert extends javax.swing.JDialog {
         photo.setBackground(new java.awt.Color(255, 255, 255));
         photo.setFont(new java.awt.Font("Segoe UI", 2, 10)); // NOI18N
         photo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        photo.setText("<html><center>PHOTO</center></br><br><center> <i>Supported format: PNG.</i></center></br><br><center><i>Max. size 64KB</i></center></html>");
+        photo.setText("<html><center>Drop your file here<br><br>PHOTO</center></br><br><center> <i>Supported format: PNG.</i></center></br><br><center><i>Max. size 64KB</i></center></html>");
         photo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         photo.setMaximumSize(new java.awt.Dimension(150, 135));
         photo.setMinimumSize(new java.awt.Dimension(150, 135));
@@ -187,6 +242,11 @@ public class Insert extends javax.swing.JDialog {
         nif.setMaximumSize(new java.awt.Dimension(400, 22));
         nif.setMinimumSize(new java.awt.Dimension(400, 22));
         nif.setPreferredSize(new java.awt.Dimension(400, 22));
+        nif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nifActionPerformed(evt);
+            }
+        });
         nif.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 nifKeyPressed(evt);
@@ -232,6 +292,7 @@ public class Insert extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(12, 24, 12, 24);
         getContentPane().add(jLabel2, gridBagConstraints);
 
+        dateOfBirth.setToolTipText("");
         dateOfBirth.setMaximumSize(new java.awt.Dimension(350, 22));
         dateOfBirth.setMinimumSize(new java.awt.Dimension(350, 22));
         dateOfBirth.setPreferredSize(new java.awt.Dimension(350, 22));
@@ -314,6 +375,14 @@ public class Insert extends javax.swing.JDialog {
             showInsert();
         }
     }//GEN-LAST:event_nifKeyPressed
+
+    private void nifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nifActionPerformed
+        
+    }//GEN-LAST:event_nifActionPerformed
+
+    private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
+       JOptionPane.showMessageDialog(this, "Person inserted successfully!");
+    }//GEN-LAST:event_insertActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdatepicker.JDatePicker dateOfBirth;
