@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.JSpinner;
 import org.jdatepicker.DateModel;
 import org.jdatepicker.JDatePicker;
 
@@ -27,7 +28,7 @@ import org.jdatepicker.JDatePicker;
  * @version 1.1.0
  */
 public class Insert extends javax.swing.JDialog {
-    
+
     public Insert(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -41,14 +42,14 @@ public class Insert extends javax.swing.JDialog {
             datePickerButton.setText("Seleccionar una fecha");
             datePickerButton.setPreferredSize(new java.awt.Dimension(180, 22)); // Ajustar tamaño si es necesario
         }
-        
+
         pack();
         setLocationRelativeTo(null);
 
         // Placeholder para el campo name
         name.setText("Enter full name...");
         name.setForeground(java.awt.Color.GRAY);
-        
+
         name.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent e) {
                 if (name.getText().equals("Enter full name...")) {
@@ -56,7 +57,7 @@ public class Insert extends javax.swing.JDialog {
                     name.setForeground(java.awt.Color.BLACK);
                 }
             }
-            
+
             public void focusLost(java.awt.event.FocusEvent e) {
                 if (name.getText().isEmpty()) {
                     name.setForeground(java.awt.Color.GRAY);
@@ -66,7 +67,7 @@ public class Insert extends javax.swing.JDialog {
         });
         nif.setText("Enter your nif");
         nif.setForeground(java.awt.Color.GRAY);
-        
+
         nif.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent e) {
                 if (nif.getText().equals("Enter your nif")) {
@@ -74,7 +75,7 @@ public class Insert extends javax.swing.JDialog {
                     nif.setForeground(java.awt.Color.BLACK);
                 }
             }
-            
+
             public void focusLost(java.awt.event.FocusEvent e) {
                 if (nif.getText().isEmpty()) {
                     nif.setForeground(java.awt.Color.GRAY);
@@ -83,29 +84,33 @@ public class Insert extends javax.swing.JDialog {
             }
         });
     }
-    
+
     public JButton getReset() {
         return reset;
     }
-    
+
     public JButton getInsert() {
         return insert;
     }
-    
+
     public JTextField getNam() {
         return name;
     }
-    
+
     public JDatePicker getDateOfBirth() {
         return dateOfBirth;
     }
-    
+
     public JTextField getNif() {
         return nif;
     }
-    
+
     public JLabel getPhoto() {
         return photo;
+    }
+
+    public JSpinner getPhoneNumber() {
+        return phonenumber;
     }
 
     /**
@@ -394,7 +399,7 @@ public class Insert extends javax.swing.JDialog {
     }//GEN-LAST:event_nifKeyPressed
 
     private void nifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nifActionPerformed
-        
+
     }//GEN-LAST:event_nifActionPerformed
 
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed

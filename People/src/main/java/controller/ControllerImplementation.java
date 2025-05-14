@@ -238,6 +238,10 @@ public class ControllerImplementation implements IController, ActionListener {
         if (insert.getPhoto().getIcon() != null) {
             p.setPhoto((ImageIcon) insert.getPhoto().getIcon());
         }
+        if (insert.getPhoneNumber() != null) {
+            p.setPhoneNumber((int) insert.getPhoneNumber().getValue());
+
+        }
         insert(p);
         insert.getReset().doClick();
     }
@@ -253,6 +257,7 @@ public class ControllerImplementation implements IController, ActionListener {
         Person pNew = read(p);
         if (pNew != null) {
             read.getNam().setText(pNew.getName());
+            read.getPhoneNumber().setValue(pNew.getPhoneNumber());
             if (pNew.getDateOfBirth() != null) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(pNew.getDateOfBirth());
