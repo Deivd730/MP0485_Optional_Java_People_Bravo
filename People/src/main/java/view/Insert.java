@@ -20,27 +20,27 @@ import org.jdatepicker.DateModel;
 import org.jdatepicker.JDatePicker;
 
 /**
- * Interface used to register a person. It is mandatory to enter at least the 
+ * Interface used to register a person. It is mandatory to enter at least the
  * NIF and the name.
+ *
  * @author Francesc Perez
  * @version 1.1.0
  */
 public class Insert extends javax.swing.JDialog {
-
+    
     public Insert(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         DropPhotoListener d = new DropPhotoListener(photo, this);
         DropTarget dropTarget = new DropTarget(photo, d);
         insert.setEnabled(false);
-        
+
         // Cambiar el texto del botón del DatePicker
         if (dateOfBirth.getComponent(1) instanceof JButton) {
             JButton datePickerButton = (JButton) dateOfBirth.getComponent(1);
             datePickerButton.setText("Seleccionar una fecha");
             datePickerButton.setPreferredSize(new java.awt.Dimension(180, 22)); // Ajustar tamaño si es necesario
         }
-
         
         pack();
         setLocationRelativeTo(null);
@@ -48,7 +48,7 @@ public class Insert extends javax.swing.JDialog {
         // Placeholder para el campo name
         name.setText("Enter full name...");
         name.setForeground(java.awt.Color.GRAY);
-
+        
         name.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent e) {
                 if (name.getText().equals("Enter full name...")) {
@@ -56,7 +56,7 @@ public class Insert extends javax.swing.JDialog {
                     name.setForeground(java.awt.Color.BLACK);
                 }
             }
-
+            
             public void focusLost(java.awt.event.FocusEvent e) {
                 if (name.getText().isEmpty()) {
                     name.setForeground(java.awt.Color.GRAY);
@@ -64,46 +64,46 @@ public class Insert extends javax.swing.JDialog {
                 }
             }
         });
-                nif.setText("Enter your nif");
-                nif.setForeground(java.awt.Color.GRAY);
-
-                nif.addFocusListener(new java.awt.event.FocusAdapter() {
-                    public void focusGained(java.awt.event.FocusEvent e) {
-                        if (nif.getText().equals("Enter your nif")) {
-                            nif.setText("");
-                            nif.setForeground(java.awt.Color.BLACK);
-                        }
-                    }
-
-                    public void focusLost(java.awt.event.FocusEvent e) {
-                        if (nif.getText().isEmpty()) {
-                            nif.setForeground(java.awt.Color.GRAY);
-                            nif.setText("Enter your nif");
-                        }
-                    }
-                });
+        nif.setText("Enter your nif");
+        nif.setForeground(java.awt.Color.GRAY);
+        
+        nif.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent e) {
+                if (nif.getText().equals("Enter your nif")) {
+                    nif.setText("");
+                    nif.setForeground(java.awt.Color.BLACK);
+                }
+            }
+            
+            public void focusLost(java.awt.event.FocusEvent e) {
+                if (nif.getText().isEmpty()) {
+                    nif.setForeground(java.awt.Color.GRAY);
+                    nif.setText("Enter your nif");
+                }
+            }
+        });
     }
-
+    
     public JButton getReset() {
         return reset;
     }
-
+    
     public JButton getInsert() {
         return insert;
     }
-
+    
     public JTextField getNam() {
         return name;
     }
-
+    
     public JDatePicker getDateOfBirth() {
         return dateOfBirth;
     }
-
+    
     public JTextField getNif() {
         return nif;
     }
-
+    
     public JLabel getPhoto() {
         return photo;
     }
@@ -120,7 +120,6 @@ public class Insert extends javax.swing.JDialog {
 
         insert = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        name = new javax.swing.JTextField();
         reset = new javax.swing.JButton();
         photo = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -128,6 +127,9 @@ public class Insert extends javax.swing.JDialog {
         jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         dateOfBirth = new org.jdatepicker.JDatePicker();
+        jLabel3 = new javax.swing.JLabel();
+        name = new javax.swing.JTextField();
+        phonenumber = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insert - People v1.1.0");
@@ -146,44 +148,23 @@ public class Insert extends javax.swing.JDialog {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 12);
         getContentPane().add(insert, gridBagConstraints);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Name");
+        jLabel1.setText("PhoneNumber");
         jLabel1.setMaximumSize(new java.awt.Dimension(100, 22));
         jLabel1.setMinimumSize(new java.awt.Dimension(100, 22));
         jLabel1.setPreferredSize(new java.awt.Dimension(100, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 12);
         getContentPane().add(jLabel1, gridBagConstraints);
-
-        name.setMaximumSize(new java.awt.Dimension(400, 22));
-        name.setMinimumSize(new java.awt.Dimension(400, 22));
-        name.setPreferredSize(new java.awt.Dimension(400, 22));
-        name.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                nameKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nameKeyTyped(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 24);
-        getContentPane().add(name, gridBagConstraints);
 
         reset.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         reset.setText("RESET");
@@ -198,7 +179,7 @@ public class Insert extends javax.swing.JDialog {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 24);
@@ -220,7 +201,7 @@ public class Insert extends javax.swing.JDialog {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.gridheight = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(24, 24, 12, 12);
@@ -274,7 +255,7 @@ public class Insert extends javax.swing.JDialog {
         jLabel8.setPreferredSize(new java.awt.Dimension(150, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 12);
@@ -286,7 +267,7 @@ public class Insert extends javax.swing.JDialog {
         jLabel2.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(12, 24, 12, 24);
@@ -298,11 +279,59 @@ public class Insert extends javax.swing.JDialog {
         dateOfBirth.setPreferredSize(new java.awt.Dimension(350, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 24);
         getContentPane().add(dateOfBirth, gridBagConstraints);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setText("Name");
+        jLabel3.setMaximumSize(new java.awt.Dimension(100, 22));
+        jLabel3.setMinimumSize(new java.awt.Dimension(100, 22));
+        jLabel3.setPreferredSize(new java.awt.Dimension(100, 22));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 12);
+        getContentPane().add(jLabel3, gridBagConstraints);
+
+        name.setMaximumSize(new java.awt.Dimension(400, 22));
+        name.setMinimumSize(new java.awt.Dimension(400, 22));
+        name.setPreferredSize(new java.awt.Dimension(400, 22));
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
+        name.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nameKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nameKeyTyped(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 24);
+        getContentPane().add(name, gridBagConstraints);
+
+        phonenumber.setModel(new javax.swing.SpinnerNumberModel());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 24);
+        getContentPane().add(phonenumber, gridBagConstraints);
 
         pack();
         setLocationRelativeTo(null);
@@ -320,6 +349,7 @@ public class Insert extends javax.swing.JDialog {
         nif.setEditable(true);
         nif.setText("");
         name.setText("");
+        phonenumber.setValue(0);
         photo.setIcon(null);
         //We reset the calendar date to the current date ...
         LocalDate dateLocate = LocalDate.now();
@@ -341,19 +371,6 @@ public class Insert extends javax.swing.JDialog {
             evt.consume();
         }
     }//GEN-LAST:event_nifKeyTyped
-
-    private void nameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyTyped
-        if (!isLetter(evt.getKeyChar()) && evt.getKeyChar() != KeyEvent.VK_BACK_SPACE && evt.getKeyChar() != KeyEvent.VK_DELETE) {
-            JOptionPane.showMessageDialog(this, "Type only uppercase or lowercase letters, hyphens, and whitespace.", this.getTitle(), JOptionPane.ERROR_MESSAGE);
-            evt.consume();
-        } else if (isLetter(evt.getKeyChar()) || evt.getKeyChar() == KeyEvent.VK_BACK_SPACE || evt.getKeyChar() == KeyEvent.VK_DELETE) {
-            showInsert();
-        }
-    }//GEN-LAST:event_nameKeyTyped
-
-    private void nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyReleased
-        showInsert();
-    }//GEN-LAST:event_nameKeyReleased
 
     private void photoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_photoMouseClicked
         photo.setIcon(null);
@@ -379,20 +396,30 @@ public class Insert extends javax.swing.JDialog {
     private void nifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nifActionPerformed
         
     }//GEN-LAST:event_nifActionPerformed
+  
+    private void nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameKeyReleased
 
-    private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
-       
-    }//GEN-LAST:event_insertActionPerformed
+    private void nameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameKeyTyped
+
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdatepicker.JDatePicker dateOfBirth;
     private javax.swing.JButton insert;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField name;
     private javax.swing.JTextField nif;
+    private javax.swing.JSpinner phonenumber;
     private javax.swing.JLabel photo;
     private javax.swing.JButton reset;
     // End of variables declaration//GEN-END:variables
