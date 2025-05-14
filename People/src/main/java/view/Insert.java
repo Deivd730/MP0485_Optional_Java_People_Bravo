@@ -396,11 +396,7 @@ public class Insert extends javax.swing.JDialog {
     private void nifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nifActionPerformed
         
     }//GEN-LAST:event_nifActionPerformed
-
-    private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
-        JOptionPane.showMessageDialog(this, "Person inserted successfully!");
-    }//GEN-LAST:event_insertActionPerformed
-
+  
     private void nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_nameKeyReleased
