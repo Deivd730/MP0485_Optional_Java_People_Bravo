@@ -26,5 +26,5 @@ public class DataValidation {
             "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"};
         return nifNoLetter + letter[Integer.parseInt(nifNoLetter) % 23];
     }
-
+    
 }
