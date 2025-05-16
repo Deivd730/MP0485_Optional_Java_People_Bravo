@@ -239,7 +239,7 @@ public class ControllerImplementation implements IController, ActionListener {
             p.setPhoto((ImageIcon) insert.getPhoto().getIcon());
         }
         if (insert.getPhoneNumber() != null) {
-            p.setPhoneNumber((int) insert.getPhoneNumber().getValue());
+            p.setPhoneNumber( insert.getPhoneNumber().getText());
 
         }
         insert(p);
