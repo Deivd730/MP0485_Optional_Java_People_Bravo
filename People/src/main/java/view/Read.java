@@ -13,7 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JSpinner;
 import org.jdatepicker.DateModel;
 import org.jdatepicker.JDatePicker;
 
@@ -24,42 +23,42 @@ import org.jdatepicker.JDatePicker;
  * @version 1.1.0
  */
 public class Read extends javax.swing.JDialog {
-    
+
     public Read(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         read.setVisible(false);
     }
-    
+
     public JButton getRead() {
         return read;
     }
-    
+
     public JTextField getNam() {
         return name;
     }
-    
+
     public JDatePicker getDateOfBirth() {
         return dateOfBirth;
     }
-    
+
     public JTextField getNif() {
         return nif;
     }
-    
+
     public JLabel getPhoto() {
         return photo;
     }
-    
+
     public JButton getReset() {
         return reset;
     }
-    
+
     public void setReset(JButton reset) {
         this.reset = reset;
     }
-    
-    public JSpinner getPhoneNumber() {
+
+    public JTextField getPhoneNumber() {
         return phonenumber;
     }
 
@@ -84,7 +83,7 @@ public class Read extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         reset = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        phonenumber = new javax.swing.JSpinner();
+        phonenumber = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Read - People v1.1.0");
@@ -251,7 +250,6 @@ public class Read extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 12);
         getContentPane().add(jLabel4, gridBagConstraints);
 
-        phonenumber.setModel(new javax.swing.SpinnerNumberModel());
         phonenumber.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -278,7 +276,7 @@ public class Read extends javax.swing.JDialog {
         nif.setEditable(true);
         name.setText("");
         photo.setIcon(null);
-        phonenumber.setValue(null);
+        phonenumber.setText("");
         //We reset the calendar date to the current date ...
         LocalDate dateLocate = LocalDate.now();
         ZoneId systemTimeZone = ZoneId.systemDefault();
@@ -318,7 +316,7 @@ public class Read extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField name;
     private javax.swing.JTextField nif;
-    private javax.swing.JSpinner phonenumber;
+    private javax.swing.JTextField phonenumber;
     private javax.swing.JLabel photo;
     private javax.swing.JButton read;
     private javax.swing.JButton reset;
