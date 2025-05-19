@@ -303,6 +303,7 @@ public class ControllerImplementation implements IController, ActionListener {
             Person pNew = read(p);
             if (pNew != null) {
                 update.getNam().setEnabled(true);
+                update.getPhoneNumber().setEnabled(true);
                 update.getDateOfBirth().setEnabled(true);
                 update.getPhoto().setEnabled(true);
                 update.getUpdate().setEnabled(true);

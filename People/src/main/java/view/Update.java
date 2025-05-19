@@ -386,9 +386,9 @@ public class Update extends javax.swing.JDialog {
     private void phonenumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phonenumberKeyPressed
         if (phonenumber.getText().length() == 8) {
             evt.consume();
-            phonenumber.setText(isPhoneNumber(phonenumber.getText()));
+            //phonenumber.setText(isPhoneNumber(phonenumber.getText()));
             phonenumber.setEditable(false);
-            read.doClick();
+            //read.doClick();
         }
 
 
@@ -396,9 +396,9 @@ public class Update extends javax.swing.JDialog {
 
     private void phonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phonenumberKeyReleased
         if (phonenumber.getText().length() == 8) {
-            phonenumber.setText(isPhoneNumber(phonenumber.getText()));
+            //phonenumber.setText(isPhoneNumber(phonenumber.getText()));
             phonenumber.setEditable(false);
-            read.doClick();
+            //read.doClick();
         }
     }//GEN-LAST:event_phonenumberKeyReleased
 
