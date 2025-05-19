@@ -327,7 +327,7 @@ public class ControllerImplementation implements IController, ActionListener {
             }
         }
     }
-  
+
     public void handleUpdateAction() {
         update = new Update(menu, true);
         update.getUpdate().addActionListener(this);
@@ -381,7 +381,6 @@ public class ControllerImplementation implements IController, ActionListener {
             update(p);
             JOptionPane.showMessageDialog(update, " Person updated successfully!", update.getTitle(), JOptionPane.INFORMATION_MESSAGE);
             update.getReset().doClick();
-            JOptionPane.showMessageDialog(update, " Person updated successfully!", update.getTitle(), JOptionPane.INFORMATION_MESSAGE);
 
         }
     }
@@ -430,10 +429,10 @@ public class ControllerImplementation implements IController, ActionListener {
         if (answer == 0) {
             try {
                 deleteAll();
-                    JOptionPane.showMessageDialog(insert, "Person deleted successfully!", "Delete - People v1.1.0", JOptionPane.INFORMATION_MESSAGE);
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(insert, "An error occurred while deleting the person.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
+                JOptionPane.showMessageDialog(insert, "Person deleted successfully!", "Delete - People v1.1.0", JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(insert, "An error occurred while deleting the person.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
