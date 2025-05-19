@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.jdatepicker.DateModel;
 import org.jdatepicker.JDatePicker;
+import static utils.DataValidation.isPhoneNumber;
 
 /**
  * Interface used to updated a person. It is mandatory to enter the NIF.
@@ -280,6 +281,12 @@ public class Update extends javax.swing.JDialog {
         getContentPane().add(jLabel4, gridBagConstraints);
 
         phonenumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                phonenumberKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                phonenumberKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 phonenumberKeyTyped(evt);
             }
@@ -375,6 +382,25 @@ public class Update extends javax.swing.JDialog {
             evt.consume();
         }
     }//GEN-LAST:event_phonenumberKeyTyped
+
+    private void phonenumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phonenumberKeyPressed
+        if (phonenumber.getText().length() == 8) {
+            evt.consume();
+            phonenumber.setText(isPhoneNumber(phonenumber.getText()));
+            phonenumber.setEditable(false);
+            read.doClick();
+        }
+
+
+    }//GEN-LAST:event_phonenumberKeyPressed
+
+    private void phonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phonenumberKeyReleased
+        if (phonenumber.getText().length() == 8) {
+            phonenumber.setText(isPhoneNumber(phonenumber.getText()));
+            phonenumber.setEditable(false);
+            read.doClick();
+        }
+    }//GEN-LAST:event_phonenumberKeyReleased
 
     /**
      * @param args the command line arguments
