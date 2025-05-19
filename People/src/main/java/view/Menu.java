@@ -160,11 +160,6 @@ public class Menu extends javax.swing.JFrame {
         countAll.setMaximumSize(new java.awt.Dimension(120, 50));
         countAll.setMinimumSize(new java.awt.Dimension(120, 50));
         countAll.setPreferredSize(new java.awt.Dimension(120, 50));
-        countAll.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                countAllActionPerformed(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
@@ -189,10 +184,6 @@ public class Menu extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void countAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countAllActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_countAllActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton countAll;

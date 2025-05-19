@@ -411,6 +411,7 @@ public class Insert extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_phonenumberKeyTyped
 
+
     private void phonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phonenumberKeyReleased
         if (phonenumber.getText().length() == 8) {
             phonenumber.setText(isPhoneNumber(phonenumber.getText()));

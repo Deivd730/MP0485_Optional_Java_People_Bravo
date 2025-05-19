@@ -284,12 +284,50 @@ public class ControllerImplementation implements IController, ActionListener {
 
     public void handleDeletePerson() {
         if (delete != null) {
-            Person p = new Person(delete.getNif().getText());
-            delete(p);
-            delete.getReset().doClick();
+            // Ask the user for confirmation
+            int respuesta = JOptionPane.showConfirmDialog(
+                    delete,
+                    "Are you sure you want to delete this person?",
+                    "Confirm Deletion",
+                    JOptionPane.YES_NO_OPTION
+            );
+            // Continue only if the user clicked "Yes"
+            if (respuesta == JOptionPane.YES_OPTION) {
+                Person p = new Person(delete.getNif().getText());
+                try {
+                    if (dao.read(p) != null) {
+                        dao.delete(p);
+
+                        // Show success message
+                        JOptionPane.showMessageDialog(
+                                delete,
+                                "Person deleted successfully!",
+                                "Success",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                        // Clear the form
+                        delete.getReset().doClick();
+                    } else {
+                        // If the person does not exist
+                        JOptionPane.showMessageDialog(
+                                delete,
+                                p.getNif() + " is not registered.",
+                                "Warning",
+                                JOptionPane.WARNING_MESSAGE
+                        );
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(
+                            delete,
+                            "Error deleting person: " + ex.getMessage(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                }
+            }
         }
     }
-
+  
     public void handleUpdateAction() {
         update = new Update(menu, true);
         update.getUpdate().addActionListener(this);
@@ -343,6 +381,8 @@ public class ControllerImplementation implements IController, ActionListener {
             update(p);
             JOptionPane.showMessageDialog(update, " Person updated successfully!", update.getTitle(), JOptionPane.INFORMATION_MESSAGE);
             update.getReset().doClick();
+            JOptionPane.showMessageDialog(update, " Person updated successfully!", update.getTitle(), JOptionPane.INFORMATION_MESSAGE);
+
         }
     }
 
@@ -388,7 +428,12 @@ public class ControllerImplementation implements IController, ActionListener {
         );
 
         if (answer == 0) {
-            deleteAll();
+            try {
+                deleteAll();
+                    JOptionPane.showMessageDialog(insert, "Person deleted successfully!", "Delete - People v1.1.0", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(insert, "An error occurred while deleting the person.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
         }
     }
 

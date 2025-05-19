@@ -376,6 +376,7 @@ public class Update extends javax.swing.JDialog {
         photo.setIcon(null);
     }//GEN-LAST:event_photoMouseClicked
 
+
     private void phonenumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phonenumberKeyTyped
         if (!isNumber(evt.getKeyChar()) && evt.getKeyChar() != KeyEvent.VK_BACK_SPACE && evt.getKeyChar() != KeyEvent.VK_DELETE) {
             JOptionPane.showMessageDialog(this, "Type only numbers [0-9]", this.getTitle(), JOptionPane.ERROR_MESSAGE);
@@ -401,6 +402,8 @@ public class Update extends javax.swing.JDialog {
             //read.doClick();
         }
     }//GEN-LAST:event_phonenumberKeyReleased
+
+
 
     /**
      * @param args the command line arguments
