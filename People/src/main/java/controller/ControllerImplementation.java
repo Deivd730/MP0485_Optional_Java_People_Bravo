@@ -238,11 +238,13 @@ public class ControllerImplementation implements IController, ActionListener {
         if (insert.getPhoto().getIcon() != null) {
             p.setPhoto((ImageIcon) insert.getPhoto().getIcon());
         }
+        if (insert.getEmail().getText() != null) {
+            p.setEmail((String) insert.getEmail().getText());
         if (insert.getPhoneNumber() != null) {
             p.setPhoneNumber(insert.getPhoneNumber().getText());
-
         }
         insert(p);
+        System.out.println(p);
         JOptionPane.showMessageDialog(null, "Person inserted successfully!");
         insert.getReset().doClick();
     }
@@ -258,6 +260,7 @@ public class ControllerImplementation implements IController, ActionListener {
         Person pNew = read(p);
         if (pNew != null) {
             read.getNam().setText(pNew.getName());
+            read.getEmail().setText(pNew.getEmail());
             read.getPhoneNumber().setText(pNew.getPhoneNumber());
             if (pNew.getDateOfBirth() != null) {
                 Calendar calendar = Calendar.getInstance();
@@ -396,6 +399,7 @@ public class ControllerImplementation implements IController, ActionListener {
                 model.addRow(new Object[i]);
                 model.setValueAt(s.get(i).getNif(), i, 0);
                 model.setValueAt(s.get(i).getName(), i, 1);
+                model.setValueAt(s.get(i) .getEmail(),i ,4);
                 model.setValueAt(s.get(i).getPhoneNumber(), i, 4);
                 if (s.get(i).getDateOfBirth() != null) {
                     model.setValueAt(s.get(i).getDateOfBirth().toString(), i, 2);

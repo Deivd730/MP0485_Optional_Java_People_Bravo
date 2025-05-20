@@ -51,6 +51,7 @@ public class ReadAll extends javax.swing.JDialog {
 
             },
             new String [] {
+                "NIF", "Name", "Date of Birth", "Photo", "Email"
                 "NIF", "Name", "Date of Birth", "Photo", "PhoneNumber"
             }
         ) {

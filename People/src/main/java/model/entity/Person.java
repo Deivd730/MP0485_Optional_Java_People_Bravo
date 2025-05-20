@@ -23,6 +23,8 @@ public class Person implements Serializable {
     private String nif;
     private String name;
     private Date dateOfBirth;
+    private int phoneNumber;
+    private String email;
     private String phoneNumber;
     @Transient
     private ImageIcon photo;
@@ -63,10 +65,11 @@ public class Person implements Serializable {
      * @param dateOfBirth
      * @param photo
      */
-    public Person(String name, String nif, String phoneNumber, Date dateOfBirth, ImageIcon photo) {
+    public Person(String name, String nif, int phoneNumber, String email, Date dateOfBirth, ImageIcon photo) {
         this.name = name;
         this.nif = nif;
         this.phoneNumber = phoneNumber;
+        this.email=email;
         this.dateOfBirth = dateOfBirth;
         this.photo = photo;
     }
@@ -112,6 +115,14 @@ public class Person implements Serializable {
         this.photoOnlyJPA = photoOnlyJPA;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -166,5 +177,8 @@ public class Person implements Serializable {
         return "Person {" + "Name = " + name + ", NIF = " + nif
                 + ", DateOfBirth = " + dateOfBirth + ", Photo = " + (photo != null) + "}";
     }
-
+//
+//    public String getEmail() {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
 }

@@ -57,6 +57,10 @@ public class Read extends javax.swing.JDialog {
     public void setReset(JButton reset) {
         this.reset = reset;
     }
+    
+    public JTextField getEmail() {
+        return email;
+    }
 
     public JTextField getPhoneNumber() {
         return phonenumber;
@@ -83,6 +87,7 @@ public class Read extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         reset = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        email = new javax.swing.JTextField();
         phonenumber = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -237,6 +242,21 @@ public class Read extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 24);
         getContentPane().add(reset, gridBagConstraints);
 
+        jLabel4.setText("jLabel4");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        getContentPane().add(jLabel4, gridBagConstraints);
+
+        email.setEnabled(false);
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Name");
         jLabel4.setMaximumSize(new java.awt.Dimension(100, 22));
@@ -258,6 +278,7 @@ public class Read extends javax.swing.JDialog {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 24);
+        getContentPane().add(email, gridBagConstraints);
         getContentPane().add(phonenumber, gridBagConstraints);
 
         pack();
@@ -307,8 +328,13 @@ public class Read extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_nifKeyPressed
 
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdatepicker.JDatePicker dateOfBirth;
+    private javax.swing.JTextField email;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
