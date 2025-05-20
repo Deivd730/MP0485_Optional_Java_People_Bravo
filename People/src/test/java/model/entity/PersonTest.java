@@ -15,6 +15,7 @@ class PersonTest {
     private String name = "John Doe";
     private int phoneNumber = 123456;
     private String email ="John@gmail.com";
+    private String phoneNumber = "123456";
     private Date dateOfBirth = new Date();
     private ImageIcon photo = new ImageIcon();
 

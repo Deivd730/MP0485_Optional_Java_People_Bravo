@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.jdatepicker.DateModel;
 import org.jdatepicker.JDatePicker;
+import static utils.DataValidation.isPhoneNumber;
 
 /**
  * Interface used to register a person. It is mandatory to enter at least the
@@ -27,7 +28,7 @@ import org.jdatepicker.JDatePicker;
  * @version 1.1.0
  */
 public class Insert extends javax.swing.JDialog {
-    
+
     public Insert(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -41,14 +42,14 @@ public class Insert extends javax.swing.JDialog {
             datePickerButton.setText("Seleccionar una fecha");
             datePickerButton.setPreferredSize(new java.awt.Dimension(180, 22)); // Ajustar tamaño si es necesario
         }
-        
+
         pack();
         setLocationRelativeTo(null);
 
         // Placeholder para el campo name
         name.setText("Enter full name...");
         name.setForeground(java.awt.Color.GRAY);
-        
+
         name.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent e) {
                 if (name.getText().equals("Enter full name...")) {
@@ -56,7 +57,7 @@ public class Insert extends javax.swing.JDialog {
                     name.setForeground(java.awt.Color.BLACK);
                 }
             }
-            
+
             public void focusLost(java.awt.event.FocusEvent e) {
                 if (name.getText().isEmpty()) {
                     name.setForeground(java.awt.Color.GRAY);
@@ -66,7 +67,7 @@ public class Insert extends javax.swing.JDialog {
         });
         nif.setText("Enter your nif");
         nif.setForeground(java.awt.Color.GRAY);
-        
+
         nif.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent e) {
                 if (nif.getText().equals("Enter your nif")) {
@@ -74,7 +75,7 @@ public class Insert extends javax.swing.JDialog {
                     nif.setForeground(java.awt.Color.BLACK);
                 }
             }
-            
+
             public void focusLost(java.awt.event.FocusEvent e) {
                 if (nif.getText().isEmpty()) {
                     nif.setForeground(java.awt.Color.GRAY);
@@ -82,28 +83,47 @@ public class Insert extends javax.swing.JDialog {
                 }
             }
         });
+
+        phonenumber.setText("Enter your phonenumber");
+        phonenumber.setForeground(java.awt.Color.GRAY);
+
+        phonenumber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent e) {
+                if (phonenumber.getText().equals("Enter your phonenumber")) {
+                    phonenumber.setText("");
+                    phonenumber.setForeground(java.awt.Color.BLACK);
+                }
+            }
+
+            public void focusLost(java.awt.event.FocusEvent e) {
+                if (phonenumber.getText().isEmpty()) {
+                    phonenumber.setForeground(java.awt.Color.GRAY);
+                    phonenumber.setText("Enter your phonenumber");
+                }
+            }
+        });
     }
-    
+
     public JButton getReset() {
         return reset;
     }
-    
+
     public JButton getInsert() {
         return insert;
     }
-    
+
     public JTextField getNam() {
         return name;
     }
-    
+
     public JDatePicker getDateOfBirth() {
         return dateOfBirth;
     }
-    
+
     public JTextField getNif() {
         return nif;
     }
-    
+
     public JLabel getPhoto() {
         return photo;
     }
@@ -111,6 +131,11 @@ public class Insert extends javax.swing.JDialog {
     public JTextField getEmail() {
         return email;
     }
+
+    public JTextField getPhoneNumber() {
+        return phonenumber;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -135,6 +160,7 @@ public class Insert extends javax.swing.JDialog {
         phonenumber = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
+        phonenumber = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insert - People v1.1.0");
@@ -223,11 +249,6 @@ public class Insert extends javax.swing.JDialog {
         nif.setMaximumSize(new java.awt.Dimension(400, 22));
         nif.setMinimumSize(new java.awt.Dimension(400, 22));
         nif.setPreferredSize(new java.awt.Dimension(400, 22));
-        nif.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nifActionPerformed(evt);
-            }
-        });
         nif.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 nifKeyPressed(evt);
@@ -301,19 +322,6 @@ public class Insert extends javax.swing.JDialog {
         name.setMaximumSize(new java.awt.Dimension(400, 22));
         name.setMinimumSize(new java.awt.Dimension(400, 22));
         name.setPreferredSize(new java.awt.Dimension(400, 22));
-        name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameActionPerformed(evt);
-            }
-        });
-        name.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                nameKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nameKeyTyped(evt);
-            }
-        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -323,7 +331,17 @@ public class Insert extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 24);
         getContentPane().add(name, gridBagConstraints);
 
-        phonenumber.setModel(new javax.swing.SpinnerNumberModel());
+        phonenumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                phonenumberKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                phonenumberKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                phonenumberKeyTyped(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -366,7 +384,7 @@ public class Insert extends javax.swing.JDialog {
         nif.setEditable(true);
         nif.setText("");
         name.setText("");
-        phonenumber.setValue(0);
+        phonenumber.setText("");
         photo.setIcon(null);
         //We reset the calendar date to the current date ...
         LocalDate dateLocate = LocalDate.now();
@@ -410,21 +428,29 @@ public class Insert extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_nifKeyPressed
 
-    private void nifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nifActionPerformed
-        
-    }//GEN-LAST:event_nifActionPerformed
-  
-    private void nameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameKeyReleased
+    private void phonenumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phonenumberKeyTyped
+        if (!isNumber(evt.getKeyChar()) && evt.getKeyChar() != KeyEvent.VK_BACK_SPACE && evt.getKeyChar() != KeyEvent.VK_DELETE) {
+            JOptionPane.showMessageDialog(this, "Type only numbers [0-9]", this.getTitle(), JOptionPane.ERROR_MESSAGE);
+            evt.consume();
+        }
+    }//GEN-LAST:event_phonenumberKeyTyped
 
-    private void nameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameKeyTyped
 
-    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameActionPerformed
+    private void phonenumberKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phonenumberKeyReleased
+        if (phonenumber.getText().length() == 8) {
+            phonenumber.setText(isPhoneNumber(phonenumber.getText()));
+            phonenumber.setEditable(false);
+            showInsert();
+        }
+    }//GEN-LAST:event_phonenumberKeyReleased
+
+    private void phonenumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phonenumberKeyPressed
+        if (phonenumber.getText().length() == 8) {
+            phonenumber.setText(isPhoneNumber(phonenumber.getText()));
+            phonenumber.setEditable(false);
+            showInsert();
+        }
+    }//GEN-LAST:event_phonenumberKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdatepicker.JDatePicker dateOfBirth;
@@ -438,7 +464,7 @@ public class Insert extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField name;
     private javax.swing.JTextField nif;
-    private javax.swing.JSpinner phonenumber;
+    private javax.swing.JTextField phonenumber;
     private javax.swing.JLabel photo;
     private javax.swing.JButton reset;
     // End of variables declaration//GEN-END:variables

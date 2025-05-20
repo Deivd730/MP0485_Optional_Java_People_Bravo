@@ -25,6 +25,7 @@ public class Person implements Serializable {
     private Date dateOfBirth;
     private int phoneNumber;
     private String email;
+    private String phoneNumber;
     @Transient
     private ImageIcon photo;
     @Lob
@@ -122,11 +123,11 @@ public class Person implements Serializable {
         this.email = email;
     }
     
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

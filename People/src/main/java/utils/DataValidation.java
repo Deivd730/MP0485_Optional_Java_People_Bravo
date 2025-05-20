@@ -18,9 +18,8 @@ public class DataValidation {
     }
 
     public static boolean isLetter(char c) {
-        //The name can contain uppercase and lowercase letters, whitespace, 
-        //hyphens and code control
-//        return (97 <= c && c <= 122) || (65 <= c && c <= 90) || (c == 32) || (c == 45);
+        // The name can contain uppercase and lowercase letters, whitespace, 
+        // hyphens and code control
         return Character.isLetter(c) || c == 32 || c == 45;
     }
 
@@ -36,5 +35,12 @@ public class DataValidation {
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-   //String emailRegex = "^[a-zA-Z0-9_+&-]+(?:.[a-zA-Z0-9_+&-]+)*@(?:[a-zA-Z0-9-]+.)+[a-zA-Z]{2,7}$";
+    public static String isPhoneNumber(String phoneNumber) {
+        String phoneRegex = "^\\+?[0-9]{1,4}?[-.\\s]?(\\(?\\d{1,3}\\)?)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$";
+        if (phoneNumber.matches(phoneRegex)) {
+            return "+34 " + phoneNumber;
+        } else {
+            return "";
+        }
+    }
 }
