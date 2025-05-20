@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  * Interface used to read all persons.
+ *
  * @author Francesc Perez
  * @version 1.1.0
  */
@@ -14,12 +15,14 @@ public class ReadAll extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment((int)JTable.CENTER_ALIGNMENT);
-        table.getColumnModel().getColumn(0).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(1).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(2).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(3).setCellRenderer( centerRenderer );
-        table.getColumnModel().getColumn(4).setCellRenderer( centerRenderer );
+        centerRenderer.setHorizontalAlignment((int) JTable.CENTER_ALIGNMENT);
+        table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        table.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        table.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        table.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        table.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
+        table.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
+
         setLocationRelativeTo(null);
     }
 
@@ -27,7 +30,6 @@ public class ReadAll extends javax.swing.JDialog {
         return table;
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,15 +53,14 @@ public class ReadAll extends javax.swing.JDialog {
 
             },
             new String [] {
-                "NIF", "Name", "Date of Birth", "Photo", "Email"
-                "NIF", "Name", "Date of Birth", "Photo", "PhoneNumber"
+                "NIF", "Name", "Date of Birth", "Photo", "Email", "PhoneNumber"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

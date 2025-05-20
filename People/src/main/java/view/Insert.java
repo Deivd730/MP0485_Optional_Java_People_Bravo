@@ -157,7 +157,6 @@ public class Insert extends javax.swing.JDialog {
         dateOfBirth = new org.jdatepicker.JDatePicker();
         jLabel3 = new javax.swing.JLabel();
         name = new javax.swing.JTextField();
-        phonenumber = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         phonenumber = new javax.swing.JTextField();

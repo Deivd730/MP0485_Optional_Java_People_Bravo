@@ -35,6 +35,7 @@ public class Update extends javax.swing.JDialog {
         DropTarget dropTarget = new DropTarget(photo, d);
         read.setVisible(false);
         update.setEnabled(false);
+        phonenumber.setEnabled(false);
     }
 
     public JButton getUpdate() {
@@ -402,8 +403,6 @@ public class Update extends javax.swing.JDialog {
             //read.doClick();
         }
     }//GEN-LAST:event_phonenumberKeyReleased
-
-
 
     /**
      * @param args the command line arguments

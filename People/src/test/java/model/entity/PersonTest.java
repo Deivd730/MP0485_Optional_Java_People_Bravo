@@ -13,7 +13,6 @@ class PersonTest {
     private Person personWithFullData;
     private String nif = "12345678X";
     private String name = "John Doe";
-    private int phoneNumber = 123456;
     private String email ="John@gmail.com";
     private String phoneNumber = "123456";
     private Date dateOfBirth = new Date();

@@ -23,7 +23,6 @@ public class Person implements Serializable {
     private String nif;
     private String name;
     private Date dateOfBirth;
-    private int phoneNumber;
     private String email;
     private String phoneNumber;
     @Transient
@@ -65,11 +64,11 @@ public class Person implements Serializable {
      * @param dateOfBirth
      * @param photo
      */
-    public Person(String name, String nif, int phoneNumber, String email, Date dateOfBirth, ImageIcon photo) {
+    public Person(String name, String nif, String phoneNumber, String email, Date dateOfBirth, ImageIcon photo) {
         this.name = name;
         this.nif = nif;
         this.phoneNumber = phoneNumber;
-        this.email=email;
+        this.email = email;
         this.dateOfBirth = dateOfBirth;
         this.photo = photo;
     }
@@ -122,7 +121,7 @@ public class Person implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
