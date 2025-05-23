@@ -43,6 +43,7 @@ public class ReadAll extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        Export = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Read All - People v1.1.0");
@@ -89,16 +90,72 @@ public class ReadAll extends javax.swing.JDialog {
         jLabel2.setRequestFocusEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(12, 24, 12, 24);
         getContentPane().add(jLabel2, gridBagConstraints);
 
+        Export.setText("Export");
+        Export.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExportActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        getContentPane().add(Export, gridBagConstraints);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExportActionPerformed
+           javax.swing.table.TableModel model = table.getModel();
+
+        // Validación: tabla vacía
+        if (model.getRowCount() == 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No hay datos para exportar.", "Tabla vacía", javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String date = new java.text.SimpleDateFormat("yyyyMMdd").format(new java.util.Date());
+        java.io.File exportDir = new java.io.File("exports");
+        if (!exportDir.exists()) {
+            exportDir.mkdir();
+        }
+
+        java.io.File file = new java.io.File(exportDir, "people_data_" + date + ".csv");
+
+        try (java.io.FileWriter csvWriter = new java.io.FileWriter(file)) {
+             
+            for (int i = 0; i < model.getColumnCount(); i++) {
+                csvWriter.write(model.getColumnName(i));
+                if (i < model.getColumnCount() - 1) csvWriter.write(",");
+            }
+            csvWriter.write("\n");
+
+            
+            for (int i = 0; i < model.getRowCount(); i++) {
+                for (int j = 0; j < model.getColumnCount(); j++) {
+                    Object value = model.getValueAt(i, j);
+                    csvWriter.write(value != null ? value.toString().replace(",", "\\,") : "");
+                    if (j < model.getColumnCount() - 1) csvWriter.write(",");
+                }
+                csvWriter.write("\n");
+            }
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Datos exportados a:\n" + file.getAbsolutePath(), "Exportación exitosa", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Error al exportar: " + ex.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+
+
+
+    }//GEN-LAST:event_ExportActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Export;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
