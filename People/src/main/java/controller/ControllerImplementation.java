@@ -243,6 +243,9 @@ public class ControllerImplementation implements IController, ActionListener {
             if (insert.getPhoneNumber() != null) {
                 p.setPhoneNumber(insert.getPhoneNumber().getText());
             }
+        if (insert.getcodigoPostal().getText() != null){
+            p.setCodigoPostal(insert.getcodigoPostal().getText());
+        }
             insert(p);
             System.out.println(p);
             JOptionPane.showMessageDialog(null, "Person inserted successfully!");
@@ -263,6 +266,7 @@ public class ControllerImplementation implements IController, ActionListener {
             read.getNam().setText(pNew.getName());
             read.getEmail().setText(pNew.getEmail());
             read.getPhoneNumber().setText(pNew.getPhoneNumber());
+            read.getcodigoPostal().setText(pNew.getCodigoPostal());
             if (pNew.getDateOfBirth() != null) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(pNew.getDateOfBirth());
@@ -402,6 +406,7 @@ public class ControllerImplementation implements IController, ActionListener {
                 model.setValueAt(s.get(i).getName(), i, 1);
                 model.setValueAt(s.get(i).getEmail(), i, 4);
                 model.setValueAt(s.get(i).getPhoneNumber(), i, 5);
+                model.setValueAt(s.get(i).getCodigoPostal(), i, 6);
                 if (s.get(i).getDateOfBirth() != null) {
                     model.setValueAt(s.get(i).getDateOfBirth().toString(), i, 2);
                 } else {

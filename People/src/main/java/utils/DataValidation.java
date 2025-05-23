@@ -43,4 +43,11 @@ public class DataValidation {
             return "";
         }
     }
-}
+   public static String iscodigoPostal(String codigoPostal){
+            String postalCodeRegex = "^(\\d{5})(?:[-\\s]?\\d{4})?$";
+        return codigoPostal;
+        
+        }   
+       
+   }
+
