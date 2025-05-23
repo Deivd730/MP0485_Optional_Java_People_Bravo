@@ -24,6 +24,7 @@ public class Person implements Serializable {
     private String name;
     private Date dateOfBirth;
     private String email;
+    private String  codigoPostal;
     private String phoneNumber;
     @Transient
     private ImageIcon photo;
@@ -64,11 +65,12 @@ public class Person implements Serializable {
      * @param dateOfBirth
      * @param photo
      */
-    public Person(String name, String nif, String phoneNumber, String email, Date dateOfBirth, ImageIcon photo) {
+    public Person(String name, String nif, String phoneNumber, String email, String codigoPostal, Date dateOfBirth, ImageIcon photo) {
         this.name = name;
         this.nif = nif;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.codigoPostal = codigoPostal;
         this.dateOfBirth = dateOfBirth;
         this.photo = photo;
     }
@@ -130,6 +132,15 @@ public class Person implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
+    
+
     /**
      * Function used to compare two Personas. There cannot be two or more people
      * with the same ID. Actually it isn't used in this project.
@@ -178,6 +189,10 @@ public class Person implements Serializable {
     }
 //
 //    public String getEmail() {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+//    }
+
+//    public Object getcodigoPostal() {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 //    }
 }
